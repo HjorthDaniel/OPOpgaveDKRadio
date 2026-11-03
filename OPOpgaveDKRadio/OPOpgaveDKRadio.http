@@ -1,0 +1,6 @@
+@OPOpgaveDKRadio_HostAddress = http://localhost:5215
+
+GET {{OPOpgaveDKRadio_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
