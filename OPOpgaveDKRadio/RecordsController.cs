@@ -11,9 +11,20 @@ namespace OPOpgaveDKRadio
 		private readonly RecordsRepository _repository = new RecordsRepository();
 
 		[HttpGet]
-		public ActionResult<IEnumerable<Records>> GetAll()
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		public ActionResult<IEnumerable<Records>> GetAllRecords()
 		{
-			return Ok(_repository.GetAllRecords());
+			List<Records> records = _repository.GetAllRecords();
+
+			if (records.Count == 0)
+			{
+				return NoContent();
+			}
+
+			return Ok(records);
+
+
 		}
 	}
 }
