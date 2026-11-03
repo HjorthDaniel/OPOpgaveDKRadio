@@ -13,9 +13,11 @@ namespace OPOpgaveDKRadio
 		[HttpGet]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
-		public ActionResult<IEnumerable<Records>> GetAllRecords()
+		public ActionResult<IEnumerable<Records>> GetAllRecords(
+	[FromQuery] string? title = null,
+	[FromQuery] string? artist = null)
 		{
-			List<Records> records = _repository.GetAllRecords();
+			List<Records> records = _repository.GetAllRecords(title, artist);
 
 			if (records.Count == 0)
 			{
@@ -23,8 +25,6 @@ namespace OPOpgaveDKRadio
 			}
 
 			return Ok(records);
-
-
 		}
 	}
 }
